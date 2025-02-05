@@ -45,13 +45,16 @@ public class SingleNode {
    * @return a list containing the values of the nodes in the linked list
    */
   public List<Integer> toList() {
-    List<Integer> result = new ArrayList<>();
-    SingleNode current = this;
-    while (current != null) {
-      result.add(current.data);
-      current = current.next;
+    ArrayList<Integer> list = new ArrayList<>();
+
+    SingleNode curr = this;
+
+    while (curr != null) {
+      list.add(curr.data);
+      curr = curr.next;
     }
-    return result;
+
+    return list;
   }
 
   /**
@@ -63,16 +66,30 @@ public class SingleNode {
    * @throws IllegalArgumentException if the input list is null or empty
    */
   public static SingleNode fromList(List<Integer> values) {
+
+    /*
+     * Set index 0 as head
+     * Traverse list of integers using a for loop
+     * Inside the loop set the next index as the next node
+     */
+
     if (values == null || values.isEmpty()) {
-      throw new IllegalArgumentException("Input list cannot be null or empty.");
+      throw new IllegalArgumentException("List is empty");
     }
 
+    // A B C D E
+    // Create an instance of SingleNode object
+    // Set index 0 of values as head
+    // Create curr pointer set as head
+    // Traverse a values list using for loop
+    // Set pointers of each index as a new node
+
     SingleNode head = new SingleNode(values.get(0));
-    SingleNode current = head;
+    SingleNode curr = head;
 
     for (int i = 1; i < values.size(); i++) {
-      current.next = new SingleNode(values.get(i));
-      current = current.next;
+      curr.next = new SingleNode(values.get(i));
+      curr = curr.next;
     }
 
     return head;

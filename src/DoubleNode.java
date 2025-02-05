@@ -53,13 +53,24 @@ public class DoubleNode {
    * @return a list containing the values of the nodes in the linked list
    */
   public List<Integer> toList() {
-    List<Integer> result = new ArrayList<>();
-    DoubleNode current = this;
-    while (current != null) {
-      result.add(current.data);
-      current = current.next;
+
+    /*
+     * Create an ArrayList
+     * Create a curr node pointer
+     * Create a while loop and traverse a doubly linked list
+     * Each time a node is found, add it to the list
+     */
+    
+    ArrayList<Integer> list = new ArrayList<>();
+    
+    DoubleNode curr = this;
+
+    while (curr != null) {
+      list.add(curr.data);
+      curr = curr.next;
     }
-    return result;
+
+    return list;
   }
 
   /**
@@ -71,18 +82,25 @@ public class DoubleNode {
    * @throws IllegalArgumentException if the input list is null or empty
    */
   public static DoubleNode fromList(List<Integer> values) {
-    if (values == null || values.isEmpty()) {
-      throw new IllegalArgumentException("Input list cannot be null or empty.");
-    }
+    
+     if (values == null || values.isEmpty()) {
+      throw new IllegalArgumentException("List is empty");
+     }
+     
+     // A B C D E
+    // Create an instance of DoubleNode object
+    // set the head as index 0 of values
+    // Create a curr pointer and set it to head
+    // Create a for loop and traverse the values list
+    // Create a next pointer at each index
 
     DoubleNode head = new DoubleNode(values.get(0));
-    DoubleNode current = head;
+    DoubleNode curr = head;
 
     for (int i = 1; i < values.size(); i++) {
-      DoubleNode newNode = new DoubleNode(values.get(i));
-      current.next = newNode;
-      newNode.prev = current;
-      current = newNode;
+      curr.next = new DoubleNode(values.get(i));
+      curr.next.prev = curr;
+      curr = curr.next;
     }
 
     return head;
